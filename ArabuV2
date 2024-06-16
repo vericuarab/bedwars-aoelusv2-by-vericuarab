@@ -4,12 +4,12 @@ local library = {}
 local spawnConnections = {}
 local utils = {}
 
-local aeolus_user = getgenv().AeolusUser or "Developer"
-local canLoadAeolus = true--getgenv().EOIFHEIUFHu0e98fekwjfbnweiurghfueiyrgy9re088ug
+local arabu_user = getgenv().ArabuUser or "Developer"
+local canLoadArabu = true--getgenv().EOIFHEIUFHu0e98fekwjfbnweiurghfueiyrgy9re088ug
 local hurttime = 0
-local AeolusRelease = "2.06 Beta"
+local ArabuRelease = "2.06 Beta"
 
-if not canLoadAeolus then return end
+if not canLoadArabu then return end
 
 Players = game:GetService("Players")
 Lighting = game:GetService("Lighting")
@@ -36,17 +36,17 @@ local config = {
 }
 
 local function saveConfig()
-	local encrypt = game:GetService("HttpService"):JSONEncode(config); if isfile("Aeolus/config.json") then delfile("Aeolus/config.json"); end
-	writefile("Aeolus/config.json",encrypt)
+	local encrypt = game:GetService("HttpService"):JSONEncode(config); if isfile("Arabu/config.json") then delfile("Arabu/config.json"); end
+	writefile("Arabu/config.json",encrypt)
 end
 
 local function loadConfig()
-	local decrypt = game:GetService("HttpService"):JSONDecode(readfile("Aeolus/config.json"))
+	local decrypt = game:GetService("HttpService"):JSONDecode(readfile("Arabu/config.json"))
 	config = decrypt
 end
 
-if not isfile("Aeolus/config.json") then
-	makefolder("Aeolus")
+if not isfile("Arabu/config.json") then
+	makefolder("Arabu")
 	saveConfig()
 end
 
@@ -567,9 +567,80 @@ Misc = library.NewWindow("Misc")
 Exploit = library.NewWindow("Exploit")
 Legit = library.NewWindow("Legit")
 
-local weaponMeta = loadstring(game:HttpGet("https://raw.githubusercontent.com/RunAccount1/AeolusV2/main/Bedwars/weaponMeta", true))()
-local Functions = loadstring(game:HttpGet("https://raw.githubusercontent.com/RunAccount1/AeolusV2/main/Bedwars/Functions.lua", true))()
-local Utilities = loadstring(game:HttpGet("https://raw.githubusercontent.com/RunAccount1/AeolusV2/main/Libraries/utils.lua", true))()
+local weaponMeta = local weaponMeta = {
+	{"rageblade", 100},
+	{"emerald_sword", 99},
+	{"deathbloom", 99},
+	{"glitch_void_sword", 98},
+	{"sky_scythe", 98},
+	{"diamond_sword", 97}, 
+	{"iron_sword", 96},
+	{"stone_sword", 95},
+	{"wood_sword", 94},
+	{"emerald_dao", 93},
+	{"diamond_dao", 99},
+	{"diamond_dagger", 99},
+	{"diamond_great_hammer", 99},
+	{"diamond_scythe", 99},
+	{"iron_dao", 97},
+	{"iron_scythe", 97},
+	{"iron_dagger", 97},
+	{"iron_great_hammer", 97},
+	{"stone_dao", 96},
+	{"stone_dagger", 96},
+	{"stone_great_hammer", 96},
+	{"stone_scythe", 96},
+	{"wood_dao", 95},
+	{"wood_scythe", 95},
+	{"wood_great_hammer", 95},
+	{"wood_dagger", 95},
+	{"frosty_hammer", 1},
+}
+return weaponMeta
+local Functions = FunctionTable = {}
+
+FunctionTable.getRemote = function(name)
+  local remote
+  	for i,v in pairs(game:GetDescendants()) do
+  		if v.Name == name then
+  			remote = v
+  			break
+  		end
+  	end
+  	return remote
+end
+
+return FunctionTable
+local Utilities = local utils = {}
+
+Players = game:GetService("Players")
+UserInputService = game:GetService("UserInputService")
+LocalPlayer = Players.LocalPlayer
+Character = LocalPlayer.Character
+Humanoid = Character.Humanoid
+ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+utils.onGround = function()
+	return Humanoid.FloorMaterial ~= Enum.Material.Air
+end
+utils.isMoving = function()
+	if onMobile then
+		return Humanoid.MoveDirection ~= Vector3.zero
+	end
+	return UserInputService:IsKeyDown("W") or UserInputService:IsKeyDown("A") or UserInputService:IsKeyDown("S") or UserInputService:IsKeyDown("D")
+end
+utils.newChat = function(Message)
+  ReplicatedStorage.DefaultChatSystemChatEvents:WaitForChild("SayMessageRequest"):FireServer(Message, "All")
+end
+utils.NewRaycast = function(Start, Direction)
+  local p = RaycastParams.new()
+	p.FilterType = Enum.RaycastFilterType.Exclude
+	p.FilterDescendantsInstances = {Character,workspace.CurrentCamera}
+	local ray = workspace:Raycast(Start,Direction,p)
+	return ray
+end
+
+return utils
 
 local getRemote = Functions.getRemote
 
