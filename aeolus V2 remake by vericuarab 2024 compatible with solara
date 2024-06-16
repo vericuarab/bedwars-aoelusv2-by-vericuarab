@@ -1684,7 +1684,7 @@ Stealer = Player.NewButton({
 local ProjectileFire = getRemote("ProjectileFire")
 local function shoot(bow, pos)
 	local args = {}
-	local shootFormulaStart = pos + Vector3.new(0,2,0)
+	local shootFormulaStart = pos + Vector3.new(0,1,0)
 	local shootFormulaDirection = Vector3.new(0,-100,0)
 	if bow.Name == "fireball" then
 		args = {
@@ -1693,7 +1693,7 @@ local function shoot(bow, pos)
 			[3] = "fireball",
 			[4] = pos,
 			[5] = shootFormulaStart,
-			[6] = Vector3.new(0,-5,0),
+			[6] = Vector3.new(0,-3,0),
 			[7] = tostring(game:GetService("HttpService"):GenerateGUID(true)),
 			[8] = {
 				["drawDurationSeconds"] = 1,
@@ -1708,7 +1708,7 @@ local function shoot(bow, pos)
 			[3] = "snowball",
 			[4] = pos,
 			[5] = shootFormulaStart,
-			[6] = Vector3.new(0,-5,0),
+			[6] = Vector3.new(0,-3,0),
 			[7] = tostring(game:GetService("HttpService"):GenerateGUID(true)),
 			[8] = {
 				["drawDurationSeconds"] = 1,
@@ -1723,7 +1723,7 @@ local function shoot(bow, pos)
 			[3] = "arrow",
 			[4] = pos,
 			[5] = shootFormulaStart,
-			[6] = Vector3.new(0,-5,0),
+			[6] = Vector3.new(0,-3,0),
 			[7] = tostring(game:GetService("HttpService"):GenerateGUID(true)),
 			[8] = {
 				["drawDurationSeconds"] = 1,
@@ -1824,7 +1824,7 @@ Chatspammer = Misc.NewButton({
 	Function = function(callback)
 		if callback then
 			repeat
-				Utilities.newChat("Aeolus V2 on top - .gg/YDdvRDPBaN")
+				Utilities.newChat("IZI by arabu")
 				task.wait(3.5)
 			until not Chatspammer.Enabled
 		end
