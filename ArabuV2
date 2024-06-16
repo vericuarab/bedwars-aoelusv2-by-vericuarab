@@ -971,13 +971,13 @@ TimerRange = Combat.NewButton({
 		if callback then
 			task.spawn(function()
 				repeat task.wait()
-					if getNearestPlayer(18) ~= nil then
-						for i = 1, math.random(5,15) do task.wait(0.1)
+					if getNearestPlayer(20) ~= nil then
+						for i = 1, math.random(13,15) do task.wait(0.1)
 							PrimaryPart.CFrame += Humanoid.MoveDirection * -1
 						end
 						task.wait(0.3)
 						for i = 1, math.random(1,2) do task.wait(0.2)
-							PrimaryPart.CFrame += Humanoid.MoveDirection * math.random(1,5)
+							PrimaryPart.CFrame += Humanoid.MoveDirection * math.random(3,5)
 						end
 					end
 				until not TimerRange.Enabled
@@ -1067,7 +1067,7 @@ TargetInfo = Visuals.NewButton({
 							end)	
 						end
 						
-						if TargetIntoStyle.Option == "Aeolus" then
+						if TargetIntoStyle.Option == "Arabu" then
 							pcall(function()
 								targetInfo.Size = UDim2.fromScale(.12, .05)
 								targetInfo.BackgroundColor3 = Color3.fromRGB(25,25,25)
@@ -1108,7 +1108,7 @@ TargetInfo = Visuals.NewButton({
 })
 TargetIntoStyle = TargetInfo.NewPicker({
 	Name = "Style",
-	Options = {"Simple", "Aeolus"}
+	Options = {"Simple", "Arabu"}
 })
 
 local ViewmodelConnection
@@ -1468,7 +1468,7 @@ Speed = Motion.NewButton({
 				task.wait()
 			until not Speed.Enabled
 		else
-			Humanoid.WalkSpeed = 16
+			Humanoid.WalkSpeed = 20
 		end
 	end,
 })
@@ -1482,7 +1482,7 @@ NoSlowDown = Motion.NewButton({
 	Function = function(callback)
 		if callback then
 			repeat task.wait()
-				Humanoid.WalkSpeed = 20
+				Humanoid.WalkSpeed = 24
 			until not NoSlowDown.Enabled
 		end
 	end,
@@ -1794,7 +1794,7 @@ local function shoot(bow, pos)
 			[3] = "arrow",
 			[4] = pos,
 			[5] = shootFormulaStart,
-			[6] = Vector3.new(0,-5,0),
+			[6] = Vector3.new(0,-2,0),
 			[7] = tostring(game:GetService("HttpService"):GenerateGUID(true)),
 			[8] = {
 				["drawDurationSeconds"] = 1,
@@ -1832,7 +1832,7 @@ Projectileaura = Combat.NewButton({
 						local bows = getAllBows()
 						for i,v in pairs(bows) do
 							spoofHand(v.Name)
-							task.wait(.06)
+							task.wait(.03)
 							if v.Name == "fireball" or v.Name == "snowball" then
 								if not AllProjectiles.Enabled then continue end
 							end
@@ -1895,7 +1895,7 @@ Chatspammer = Misc.NewButton({
 	Function = function(callback)
 		if callback then
 			repeat
-				Utilities.newChat("Aeolus V2 on top - .gg/YDdvRDPBaN")
+				Utilities.newChat("IZI Arabu V2 on top")
 				task.wait(3.5)
 			until not Chatspammer.Enabled
 		end
@@ -2141,7 +2141,7 @@ AntiHit = Motion.NewButton({
 			local lastHit = tick()
 			repeat
 				
-				local nearest = getNearestPlayer(12)
+				local nearest = getNearestPlayer(14)
 				
 				if (hurttime <= 50) and nearest then
 					
@@ -2174,7 +2174,7 @@ AutoDip = Misc.NewButton({
 			local wasDisabled = false
 			repeat task.wait()
 				local nearest = getNearestPlayer(9e9)
-				if Humanoid.Health > 0 and Humanoid.Health < 30 and nearest.Character.Humanoid.Health > Humanoid.Health and not InfiniteFly.Enabled then
+				if Humanoid.Health > 0 and Humanoid.Health < 35 and nearest.Character.Humanoid.Health > Humanoid.Health and not InfiniteFly.Enabled then
 					InfiniteFly.ToggleButton(true)
 					wasDisabled = true
 				end
