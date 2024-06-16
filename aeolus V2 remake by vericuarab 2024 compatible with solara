@@ -1826,7 +1826,7 @@ Chatspammer = Misc.NewButton({
 		if callback then
 			repeat
 				Utilities.newChat("IZI by arabu")
-				task.wait(3.5)
+				task.wait(1.5)
 			until not Chatspammer.Enabled
 		end
 	end,
